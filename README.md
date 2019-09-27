@@ -11,7 +11,7 @@ As a result, I developed my tools to work on HDF5 datasets based on [python-h5py
 # Features
 
 * Both viewing and editing
-* Import numpy  seamlessly
+* You can use numpy inside seamlessly
 * Work in console
 * Behave like a Unix shell
 * No need to learn anything if you are familiar with the Linux environment
