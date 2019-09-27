@@ -21,7 +21,7 @@ As a result, I developed my tools to work on HDF5 datasets based on [python-h5py
 The code requires [numpy](https://numpy.org/) and [python-h5py](http://docs.h5py.org/en/stable/).
 
 ```
-$ sudo pip3 install h5py
+$ sudo pip3 install numpy h5py
 ```
 
 # Usage
