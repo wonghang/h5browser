@@ -1,17 +1,17 @@
 # h5browser
-h5browser.py - Lightweight HDF5 browser
+h5browser.py - A lightweight HDF5 browser
 
-h5browser.py is great HDF5 file browser and manipulation tool for command line lovers.
+h5browser.py is a great HDF5 file browser and manipulation tool for command line lovers.
 
 # History
 
 I wrote it in around 2016. [hdfview](https://www.hdfgroup.org/downloads/hdfview/) is too big and too slow for working on large datasets stored in HDF5.
-As a result, I developed my own tools to work on HDF5 datasets based on [python-h5py|http://docs.h5py.org/en/stable/). 
+As a result, I developed my own tools to work on HDF5 datasets based on [python-h5py](http://docs.h5py.org/en/stable/). 
 
 # Features
 
 * Both viewing and editing
-* Import numpy automatically
+* Import numpy  seamlessly
 * Work in console
 * Behave like a Unix shell
 * No need to learn anything if you are familiar with the Linux environment
@@ -107,6 +107,94 @@ array([-0.01382094,  0.01966984, -0.3044741 ,  0.28935912, -0.45117697,
 h5browser.py can also edit and manipulate the data. To do so, you must switch the opening mode into read-write mode by running
 
 ```
-$ rw
-# 
+Opening tutorial2.h5 (read-only)...
+/$ rw
+Opening tutorial2.h5 (read-write)...
+/# 
 ```
+
+When the file is opened in read-write mode, the prompt will show `#` instead of `$`. It is akin to the root account in Bash shell.
+
+In read-write mode, you can create a new group by `mkdir`:
+
+```
+/# mkdir new_group
+/# ls 
+dense      dense_1    flatten    new_group  
+/# 
+```
+
+h5browser.py integrates with numpy seamlessly as an import. You can create a dataset by another combination of numpy code.
+
+```
+/# cd new_group
+/new_group# X = np.linspace(0,1,50)
+/new_group# Y = np.cos(2*np.pi*X)
+/new_group# ls 
+X  Y  
+/new_group# cat X
+(50,) dtype('<f8')
+array([0.        , 0.02040816, 0.04081633, 0.06122449, 0.08163265,
+       0.10204082, 0.12244898, 0.14285714, 0.16326531, 0.18367347,
+       0.20408163, 0.2244898 , 0.24489796, 0.26530612, 0.28571429,
+       0.30612245, 0.32653061, 0.34693878, 0.36734694, 0.3877551 ,
+       0.40816327, 0.42857143, 0.44897959, 0.46938776, 0.48979592,
+       0.51020408, 0.53061224, 0.55102041, 0.57142857, 0.59183673,
+       0.6122449 , 0.63265306, 0.65306122, 0.67346939, 0.69387755,
+       0.71428571, 0.73469388, 0.75510204, 0.7755102 , 0.79591837,
+       0.81632653, 0.83673469, 0.85714286, 0.87755102, 0.89795918,
+       0.91836735, 0.93877551, 0.95918367, 0.97959184, 1.        ])
+/new_group# cat Y
+(50,) dtype('<f8')
+array([ 1.        ,  0.99179001,  0.96729486,  0.92691676,  0.8713187 ,
+        0.80141362,  0.71834935,  0.6234898 ,  0.51839257,  0.40478334,
+        0.28452759,  0.1595999 ,  0.03205158, -0.09602303, -0.22252093,
+       -0.34536505, -0.46253829, -0.57211666, -0.67230089, -0.76144596,
+       -0.8380881 , -0.90096887, -0.94905575, -0.98155916, -0.99794539,
+       -0.99794539, -0.98155916, -0.94905575, -0.90096887, -0.8380881 ,
+       -0.76144596, -0.67230089, -0.57211666, -0.46253829, -0.34536505,
+       -0.22252093, -0.09602303,  0.03205158,  0.1595999 ,  0.28452759,
+        0.40478334,  0.51839257,  0.6234898 ,  0.71834935,  0.80141362,
+        0.8713187 ,  0.92691676,  0.96729486,  0.99179001,  1.        ])
+```
+
+To delete a data, use `rm` like Unix shell
+
+```
+/new_group# rm X
+/new_group# ls
+Y  
+```
+
+But for one thing, to delete a group, you also use `rm`.
+
+```
+/new_group# cd ..
+/# rm new_group
+/# ls
+dense    dense_1  flatten  
+/# 
+```
+
+Once you finish editing the HDF5 file, you can switch back to read-only mode by `ro`
+
+```
+/# ro
+Opening tutorial2.h5 (read-only)...
+/$ a = 123
+This command require read-write mode. Please switch to read-write mode using command "rw" first
+/$ 
+```
+
+and then you are no longer able to modify its content.
+
+At last, you can also create a new HDF5 file by opening a path that doesn't exist
+
+```
+$ h5browser.py /tmp/a.h5
+Opening /tmp/a.h5 (read-only)...
+/tmp/a.h5 not found. Do you want to create it [y/n]? y
+Opening /tmp/a.h5 (read-write)...
+/#
+```
+
