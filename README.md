@@ -188,6 +188,14 @@ This command requires read-write mode. Please switch to read-write mode using co
 
 and then you are no longer able to modify its content.
 
+Attributes under a group can be read by `pwd`:
+
+```
+/xxx/RESULT$ pwd
+/xxx/RESULT
+count => 12
+```
+
 At last, you can also create a new HDF5 file by opening a path that doesn't exist:
 
 ```
