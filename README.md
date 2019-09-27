@@ -16,6 +16,14 @@ As a result, I developed my tools to work on HDF5 datasets based on [python-h5py
 * Behave like a Unix shell
 * No need to learn anything if you are familiar with the Linux environment
 
+# Prerequisites
+
+The code requires [numpy](https://numpy.org/) and [python-h5py](http://docs.h5py.org/en/stable/).
+
+```
+$ sudo pip3 install h5py
+```
+
 # Usage
 
 To view/edit an existing HDF5 file.
@@ -158,6 +166,31 @@ array([ 1.        ,  0.99179001,  0.96729486,  0.92691676,  0.8713187 ,
         0.8713187 ,  0.92691676,  0.96729486,  0.99179001,  1.        ])
 ```
 
+You can also do some simple calculations using numpy inside h5browser.py
+
+```
+/new_group# X*2
+[0.         0.04081633 0.08163265 0.12244898 0.16326531 0.20408163
+ 0.24489796 0.28571429 0.32653061 0.36734694 0.40816327 0.44897959
+ 0.48979592 0.53061224 0.57142857 0.6122449  0.65306122 0.69387755
+ 0.73469388 0.7755102  0.81632653 0.85714286 0.89795918 0.93877551
+ 0.97959184 1.02040816 1.06122449 1.10204082 1.14285714 1.18367347
+ 1.2244898  1.26530612 1.30612245 1.34693878 1.3877551  1.42857143
+ 1.46938776 1.51020408 1.55102041 1.59183673 1.63265306 1.67346939
+ 1.71428571 1.75510204 1.79591837 1.83673469 1.87755102 1.91836735
+ 1.95918367 2.        ]
+/new_group# X+1
+[1.         1.02040816 1.04081633 1.06122449 1.08163265 1.10204082
+ 1.12244898 1.14285714 1.16326531 1.18367347 1.20408163 1.2244898
+ 1.24489796 1.26530612 1.28571429 1.30612245 1.32653061 1.34693878
+ 1.36734694 1.3877551  1.40816327 1.42857143 1.44897959 1.46938776
+ 1.48979592 1.51020408 1.53061224 1.55102041 1.57142857 1.59183673
+ 1.6122449  1.63265306 1.65306122 1.67346939 1.69387755 1.71428571
+ 1.73469388 1.75510204 1.7755102  1.79591837 1.81632653 1.83673469
+ 1.85714286 1.87755102 1.89795918 1.91836735 1.93877551 1.95918367
+ 1.97959184 2.        ]
+```
+
 To delete a data, use `rm` like Unix shell:
 
 ```
@@ -204,5 +237,22 @@ Opening /tmp/a.h5 (read-only)...
 /tmp/a.h5 not found. Do you want to create it [y/n]? y
 Opening /tmp/a.h5 (read-write)...
 /#
+```
+
+# Manual
+
+Type `help` to get a list of all commands:
+
+```
+/$ help
+
+Documented commands (type help <topic>):
+========================================
+EOF  cd    eval  help  mkdir  print  quit      readwrite  ro
+cat  dump  exit  ls    p      pwd    readonly  rm         rw
+
+/$ help dump
+dump (path) - Dump a dataset (as list) to the screen. (It may take some time if the dataset is too big)
+/$ 
 ```
 
