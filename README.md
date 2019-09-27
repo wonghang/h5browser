@@ -1,12 +1,12 @@
 # h5browser
 h5browser.py - A lightweight HDF5 browser
 
-h5browser.py is a great HDF5 file browser and manipulation tool for command line lovers.
+h5browser.py is a great HDF5 file browser and manipulation tool for command-line lovers.
 
 # History
 
 I wrote it in around 2016. [hdfview](https://www.hdfgroup.org/downloads/hdfview/) is too big and too slow for working on large datasets stored in HDF5.
-As a result, I developed my own tools to work on HDF5 datasets based on [python-h5py](http://docs.h5py.org/en/stable/). 
+As a result, I developed my tools to work on HDF5 datasets based on [python-h5py](http://docs.h5py.org/en/stable/). 
 
 # Features
 
@@ -18,7 +18,7 @@ As a result, I developed my own tools to work on HDF5 datasets based on [python-
 
 # Usage
 
-To view/edit an existing HDF5 file
+To view/edit an existing HDF5 file.
 
 ```
 $ ./h5browser.py (file path)
@@ -39,7 +39,7 @@ Opening h5ex_t_float.h5 (read-only)...
 DS1  
 ```
 
-Run `cat` to print the dataset
+Run `cat` to print the dataset.
 
 ```
 /$ cat DS1
@@ -104,7 +104,7 @@ array([-0.01382094,  0.01966984, -0.3044741 ,  0.28935912, -0.45117697,
 /dense/dense$ 
 ```
 
-h5browser.py can also edit and manipulate the data. To do so, you must switch the opening mode into read-write mode by running
+h5browser.py can also edit and manipulate the data. To do so, you must switch the opening mode into read-write mode by running:
 
 ```
 Opening tutorial2.h5 (read-only)...
@@ -113,7 +113,7 @@ Opening tutorial2.h5 (read-write)...
 /# 
 ```
 
-When the file is opened in read-write mode, the prompt will show `#` instead of `$`. It is akin to the root account in Bash shell.
+If the file is opened in read-write mode, the prompt will show `#` instead of `$`. It is akin to the root account prompt in the Bash shell.
 
 In read-write mode, you can create a new group by `mkdir`:
 
@@ -158,7 +158,7 @@ array([ 1.        ,  0.99179001,  0.96729486,  0.92691676,  0.8713187 ,
         0.8713187 ,  0.92691676,  0.96729486,  0.99179001,  1.        ])
 ```
 
-To delete a data, use `rm` like Unix shell
+To delete a data, use `rm` like Unix shell:
 
 ```
 /new_group# rm X
@@ -166,7 +166,7 @@ To delete a data, use `rm` like Unix shell
 Y  
 ```
 
-But for one thing, to delete a group, you also use `rm`.
+However, to delete a group, you also use `rm` instead:
 
 ```
 /new_group# cd ..
@@ -176,19 +176,19 @@ dense    dense_1  flatten
 /# 
 ```
 
-Once you finish editing the HDF5 file, you can switch back to read-only mode by `ro`
+Once you finish editing the HDF5 file, you can switch back to read-only mode by `ro`:
 
 ```
 /# ro
 Opening tutorial2.h5 (read-only)...
 /$ a = 123
-This command require read-write mode. Please switch to read-write mode using command "rw" first
+This command requires read-write mode. Please switch to read-write mode using command "rw" first
 /$ 
 ```
 
 and then you are no longer able to modify its content.
 
-At last, you can also create a new HDF5 file by opening a path that doesn't exist
+At last, you can also create a new HDF5 file by opening a path that doesn't exist:
 
 ```
 $ h5browser.py /tmp/a.h5
