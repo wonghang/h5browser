@@ -341,14 +341,9 @@ class h5browser(Cmd):
     complete_rm=complete_cd
     complete_mkdir=complete_cd
 
-if __name__ == '__main__':
-    try:
-        path = sys.argv[1]
-    except IndexError:
-        sys.stderr.write("%s (hdf5 file path)\n" % sys.argv[0])
-        sys.exit(1)
-
-    intro = """h5browser.py - A lightweight HDF5 browser
+    def do_license(self,argv):
+        """license - Print BSD license"""
+        txt = """h5browser.py - A lightweight HDF5 browser
 
 Copyright (c) 2019, Wong Hang <wonghang@gmail.com>
 All rights reserved.
@@ -378,7 +373,13 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-    
-    print(intro)
-    b = h5browser(path)
-    b.cmdloop()
+        print(txt)
+
+if __name__ == '__main__':
+    try:
+        path = sys.argv[1]
+    except IndexError:
+        sys.stderr.write("%s (hdf5 file path)\n" % sys.argv[0])
+        sys.exit(1)
+    else:
+        h5browser(path).cmdloop()

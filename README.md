@@ -1,7 +1,7 @@
 # h5browser
 h5browser.py - A lightweight HDF5 browser
 
-h5browser.py is a great HDF5 file browser and manipulation tool for command-line lovers.
+h5browser.py is a useful HDF5 file browser and manipulation tool for command-line lovers.
 
 # History
 
@@ -39,7 +39,7 @@ $ wget https://support.hdfgroup.org/ftp/HDF5/examples/files/exbyapi/h5ex_t_float
 $ ./h5browser.py h5ex_t_float.h5
 ```
 
-All groups and datasets are similar to that of a Linux shell. Groups are like directories and dataset are like files.
+All groups and datasets are similar to that of a Linux shell. Groups are like directories and datasets are like files.
 
 ```
 Opening h5ex_t_float.h5 (read-only)...
@@ -191,7 +191,7 @@ You can also do some simple calculations using numpy inside h5browser.py
  1.97959184 2.        ]
 ```
 
-To delete a data, use `rm` like Unix shell:
+To delete a dataset, use `rm` like Unix shell:
 
 ```
 /new_group# rm X
@@ -241,15 +241,15 @@ Opening /tmp/a.h5 (read-write)...
 
 # Manual
 
-Type `help` to get a list of all commands:
+Type `help` to get a list of all commands and obtain their usage
 
 ```
 /$ help
 
 Documented commands (type help <topic>):
 ========================================
-EOF  cd    eval  help  mkdir  print  quit      readwrite  ro
-cat  dump  exit  ls    p      pwd    readonly  rm         rw
+EOF  cd    eval  help     ls     p      pwd   readonly   rm  rw
+cat  dump  exit  license  mkdir  print  quit  readwrite  ro
 
 /$ help dump
 dump (path) - Dump a dataset (as list) to the screen. (It may take some time if the dataset is too big)
