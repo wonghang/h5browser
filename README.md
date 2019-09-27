@@ -132,7 +132,7 @@ dense      dense_1    flatten    new_group
 /# 
 ```
 
-h5browser.py integrates with numpy seamlessly as an package. You can create a dataset by numpy code.
+h5browser.py integrates with numpy seamlessly as a package. You can create a dataset by numpy code.
 
 ```
 /# cd new_group
